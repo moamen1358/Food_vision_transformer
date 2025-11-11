@@ -84,7 +84,9 @@ Thumbs.db
 *.zip
 *.tar
 *.rar
+# Exclude large shell scripts, but allow docker-start.sh
 *.sh
+!docker-start.sh
 Miniconda*.sh
 models/
 checkpoints/
@@ -114,4 +116,3 @@ outputs/
 results/
 runs/
 *.log
-helper_pytorch/

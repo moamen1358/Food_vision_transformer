@@ -1,0 +1,52 @@
+# Git files
+.git
+.gitignore
+.gitmodules
+
+# Python cache
+__pycache__
+*.py[cod]
+*.egg-info
+.eggs
+dist
+build
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large files
+*.pth
+*.pt
+*.ckpt
+data/
+models/
+*.tar.gz
+*.zip
+
+# Documentation
+*.md
+README.md
+DOCKER.md
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.travis.yml
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# Misc
+.env
+.env.local
+*.log
+logs/
+outputs/

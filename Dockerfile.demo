@@ -1,0 +1,32 @@
+# Dockerfile for the FoodVision Gradio demo app
+FROM pytorch/pytorch:2.0.1-cuda11.8-cudnn8-runtime
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy demo requirements
+COPY demos/foodvision_big/requirements.txt .
+
+# Install Python dependencies
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
+
+# Copy demo files
+COPY demos/foodvision_big/ .
+
+# Create directories
+RUN mkdir -p examples models
+
+# Expose Gradio port
+EXPOSE 7860
+
+# Environment
+ENV PYTHONUNBUFFERED=1
+
+# Run Gradio app
+CMD ["python", "app.py"]
