@@ -1,67 +1,22 @@
 services:
-  vit-training:
+  gradio-demo:
     build:
       context: .
-      dockerfile: Dockerfile
-    image: vit-food-vision:latest
-    container_name: vit-training
+      dockerfile: Dockerfile.demo
+    image: vit-demo:latest
+    container_name: vit-demo
     
-    # GPU support (comment out if not available)
-    # deploy:
-    #   resources:
-    #     reservations:
-    #       devices:
-    #         - driver: nvidia
-    #           count: 1
-    #           capabilities: [gpu]
-    
-    # Volumes
-    volumes:
-      - ./data:/app/data
-      - ./models:/app/models
-      - ./outputs:/app/outputs
-      - ./logs:/app/logs
-      - ./Food101_pytorch_vit_effnet.ipynb:/app/Food101_pytorch_vit_effnet.ipynb
-    
-    # Ports
     ports:
-      - "8888:8888"  # Jupyter Lab
-      - "7860:7860"  # Gradio
+      - "7860:7860"
     
-    # Environment
+    volumes:
+      - ./demos/foodvision_big:/app
+      - ./models:/app/models
+    
     environment:
-      - JUPYTER_ENABLE_LAB=yes
       - PYTHONUNBUFFERED=1
-      - CUDA_VISIBLE_DEVICES=0
     
-    # Keep container running
     stdin_open: true
     tty: true
     
-    # Restart policy
     restart: unless-stopped
-
-  # Optional: TensorBoard service
-  tensorboard:
-    image: tensorflow/tensorflow:latest
-    container_name: vit-tensorboard
-    
-    volumes:
-      - ./logs:/logs
-    
-    ports:
-      - "6006:6006"
-    
-    command: tensorboard --logdir=/logs --host=0.0.0.0
-    
-    restart: unless-stopped
-
-volumes:
-  data:
-  models:
-  outputs:
-  logs:
-
-networks:
-  default:
-    name: vit-network
