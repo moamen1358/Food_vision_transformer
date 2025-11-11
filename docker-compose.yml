@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   vit-training:
     build:
@@ -8,14 +6,14 @@ services:
     image: vit-food-vision:latest
     container_name: vit-training
     
-    # GPU support
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+    # GPU support (comment out if not available)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
     
     # Volumes
     volumes:
@@ -29,7 +27,6 @@ services:
     ports:
       - "8888:8888"  # Jupyter Lab
       - "7860:7860"  # Gradio
-      - "6006:6006"  # TensorBoard
     
     # Environment
     environment:
