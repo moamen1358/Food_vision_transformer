@@ -18,9 +18,25 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
-if ! command -v docker-compose &> /dev/null; then
+# Check for docker compose (v2) or docker-compose (v1)
+if ! docker compose version &> /dev/null && ! command -v docker-compose &> /dev/null; then
     echo "❌ Docker Compose is not installed. Please install Docker Compose first."
     exit 1
+fi
+
+# Set docker compose command (v2 uses 'docker compose', v1 uses 'docker-compose')
+if docker compose version &> /dev/null; then
+    COMPOSE_CMD="docker compose"
+else
+    COMPOSE_CMD="docker-compose"
+fi
+
+# Create alias for compatibility
+alias docker-compose="docker compose" 2>/dev/null || true
+
+# Use docker compose (v2) if docker-compose command doesn't exist
+if ! command -v docker-compose &> /dev/null; then
+    alias docker-compose="docker compose"
 fi
 
 # Check for NVIDIA GPU support
@@ -54,8 +70,8 @@ case $choice in
         ;;
     
     2)
-        echo -e "${BLUE}Starting services with docker-compose...${NC}"
-        docker-compose up -d
+        echo -e "${BLUE}Starting services with docker compose...${NC}"
+        $COMPOSE_CMD up -d
         echo -e "${GREEN}✓ Services started${NC}"
         echo ""
         echo "📌 Access points:"
@@ -63,7 +79,7 @@ case $choice in
         echo "  - TensorBoard: http://localhost:6006"
         echo "  - Gradio Demo: http://localhost:7860"
         echo ""
-        echo "View logs: docker-compose logs -f"
+        echo "View logs: $COMPOSE_CMD logs -f"
         ;;
     
     3)
@@ -99,25 +115,25 @@ case $choice in
     
     5)
         echo -e "${BLUE}Stopping all services...${NC}"
-        docker-compose down
+        $COMPOSE_CMD down
         echo -e "${GREEN}✓ Services stopped${NC}"
         ;;
     
     6)
         echo -e "${BLUE}Viewing logs...${NC}"
-        docker-compose logs -f
+        $COMPOSE_CMD logs -f
         ;;
     
     7)
         echo -e "${BLUE}Entering container shell...${NC}"
-        docker-compose exec vit-training bash
+        $COMPOSE_CMD exec vit-training bash
         ;;
     
     8)
         echo -e "${BLUE}Cleaning up Docker resources...${NC}"
         read -p "⚠️  This will remove images and volumes. Continue? (y/n): " confirm
         if [ "$confirm" = "y" ]; then
-            docker-compose down -v
+            $COMPOSE_CMD down -v
             docker rmi vit-food-vision:latest vit-demo:latest
             docker system prune -a --volumes
             echo -e "${GREEN}✓ Cleanup complete${NC}"
