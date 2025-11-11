@@ -1,0 +1,115 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large files & Models
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.tar.gz
+*.tar.bz2
+*.zip
+*.tar
+*.rar
+models/
+checkpoints/
+saved_models/
+pretrained/
+weights/
+
+# Datasets
+data/
+datasets/
+food-101/
+CIFAR-100/
+cifar-100-python/
+ImageNet/
+*.pkl
+*.pickle
+
+# Temporary data files
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.feather
+
+# Logs & outputs
+logs/
+outputs/
+results/
+runs/
+*.log
