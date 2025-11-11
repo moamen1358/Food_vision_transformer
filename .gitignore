@@ -84,6 +84,8 @@ Thumbs.db
 *.zip
 *.tar
 *.rar
+*.sh
+Miniconda*.sh
 models/
 checkpoints/
 saved_models/
@@ -94,8 +96,7 @@ weights/
 data/
 datasets/
 food-101/
-CIFAR-100/
-cifar-100-python/
+
 ImageNet/
 *.pkl
 *.pickle
@@ -113,3 +114,4 @@ outputs/
 results/
 runs/
 *.log
+helper_pytorch/
