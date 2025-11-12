@@ -1,5 +1,5 @@
 # Use official PyTorch CUDA image as base
-FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
+FROM pytorch/pytorch:2.0.1-cuda11.8-cudnn8-runtime
 
 # Set working directory
 WORKDIR /app
@@ -18,6 +18,11 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
+
+# Copy project files
+COPY Food101_pytorch_vit_effnet.ipynb .
+COPY helper_pytorch/ ./helper_pytorch/
+COPY .gitignore .
 
 # Create directories for data, models, and outputs
 RUN mkdir -p data models outputs logs

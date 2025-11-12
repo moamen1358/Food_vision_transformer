@@ -16,10 +16,10 @@ def create_vit_model(num_classes:int=3,
         model (torch.nn.Module): ViT-B/16 feature extractor model.
         transforms (torchvision.transforms): ViT-B/16 image transforms.
     """
-    # Create ViT_B_16 pretrained weights, transforms and model
+    # Create ViT_B_16 model WITHOUT pretrained weights (we'll load our own)
     weights = torchvision.models.ViT_B_16_Weights.DEFAULT
     transforms = weights.transforms()
-    model = torchvision.models.vit_b_16(weights=weights)
+    model = torchvision.models.vit_b_16(weights=None)  # No pretrained weights - use our trained model
 
     # Freeze all layers in model
     for param in model.parameters():

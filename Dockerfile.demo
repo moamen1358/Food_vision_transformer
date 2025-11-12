@@ -25,6 +25,9 @@ RUN pip install --upgrade pip && \
 # Copy demo files
 COPY demos/ .
 
+# Copy trained model weights
+COPY models/vit_model.pth /app/vit_model.pth
+
 # Create directories
 RUN mkdir -p examples models
 

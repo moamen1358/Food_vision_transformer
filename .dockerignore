@@ -22,13 +22,15 @@ build
 Thumbs.db
 
 # Large files
-*.pth
-*.pt
-*.ckpt
 data/
-models/
 *.tar.gz
 *.zip
+
+# Allow models directory for Docker build
+# models/
+# *.pth
+# *.pt
+# *.ckpt
 
 # Documentation
 *.md

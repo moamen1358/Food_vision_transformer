@@ -60,9 +60,9 @@ def predict(img) -> Tuple[Dict, float]:
 ### 4. Gradio app ###
 
 # Create title, description and article strings
-title = "FoodVision Big 🍔👁"
-description = "An EfficientNetB2 feature extractor computer vision model to classify images of food into [101 different classes](https://github.com/mrdbourke/pytorch-deep-learning/blob/main/extras/food101_class_names.txt)."
-article = "Created at [09. PyTorch Model Deployment](https://www.learnpytorch.io/09_pytorch_model_deployment/)."
+title = "FoodVision App👁"
+description = "An EfficientNetB2 feature extractor computer vision model to classify images of food into 101 different classes."
+article = "Created by Moamen"
 
 # Create examples list from "examples/" directory
 example_list = [["examples/" + example] for example in os.listdir("examples")]
