@@ -19,12 +19,16 @@ effnetb2, effnetb2_transforms = create_vit_model(
 )
 
 # Load saved weights
-effnetb2.load_state_dict(
-    torch.load(
-        f="09_pretrained_effnetb2_feature_extractor_food101_20_percent.pth",
-        map_location=torch.device("cpu"),  # load to CPU
+try:
+    effnetb2.load_state_dict(
+        torch.load(
+            f="vit_model.pth",
+            map_location=torch.device("cpu"),  # load to CPU
+        )
     )
-)
+    print("✓ Loaded vit_model.pth")
+except FileNotFoundError:
+    print("⚠️ vit_model.pth not found, using pretrained weights only")
 
 ### 3. Predict function ###
 
@@ -78,4 +82,4 @@ demo = gr.Interface(
 )
 
 # Launch the app!
-demo.launch()
+demo.launch(server_name="0.0.0.0", server_port=7860, share=False)

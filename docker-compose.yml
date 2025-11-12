@@ -6,17 +6,22 @@ services:
     image: vit-demo:latest
     container_name: vit-demo
     
+    # Volumes
+    volumes:
+      - ./demos:/app
+      - ./models/vit_model.pth:/app/vit_model.pth
+    
+    # Ports
     ports:
       - "7860:7860"
     
-    volumes:
-      - ./demos/foodvision_big:/app
-      - ./models:/app/models
-    
+    # Environment
     environment:
       - PYTHONUNBUFFERED=1
     
-    stdin_open: true
-    tty: true
-    
+    # Restart policy
     restart: unless-stopped
+
+networks:
+  default:
+    name: vit-network
