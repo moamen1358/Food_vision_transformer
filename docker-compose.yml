@@ -2,7 +2,6 @@ services:
   gradio-demo:
     build:
       context: .
-      dockerfile: Dockerfile.demo
     image: vit-demo:latest
     container_name: vit-demo
     
