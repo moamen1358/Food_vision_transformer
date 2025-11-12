@@ -1,1 +1,0 @@
-docker run -p 7860:7860 -v ./models/vit_model.pth:/app/vit_model.pth moamen1358/vit-demo:latest
